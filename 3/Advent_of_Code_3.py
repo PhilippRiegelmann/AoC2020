@@ -1,6 +1,6 @@
 input = []
 
-with open("C:/Users/Phili/Documents/Projects/Advent of Code/3/input.txt", "r") as f:
+with open("C:/Users/Phili/Documents/Projects/AoC_2020/3/input.txt", "r") as f:
     for line in f:
         input.append(line.rstrip())
 

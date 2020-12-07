@@ -76,7 +76,7 @@ def findmissingID(input):
 
 def main():
     SeatID = []
-    input = read_file("C:/Users/Phili/Documents/Projects/Advent of Code/5/input.txt")
+    input = read_file("C:/Users/Phili/Documents/Projects/AoC_2020/5/input.txt")
     for i in range(len(input)):
         SeatID.append(calcSeatID(input[i]))
     print(findhighestnumber(SeatID))

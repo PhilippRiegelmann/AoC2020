@@ -1,6 +1,6 @@
 numbers = []
 
-with open("C:/Users/Phili/Documents/Projects/Advent of Code/1/input.txt", "r") as f:
+with open("C:/Users/Phili/Documents/Projects/AoC_2020/1/input.txt", "r") as f:
     for line in f:
         numbers.append(int(line.rstrip()))
 Answer = 0

@@ -50,15 +50,13 @@ def main():
     print(
         sum_answer_yes(
             delete_duplications(
-                read_file(
-                    "C:/Users/Phili/Documents/Projects/Advent of Code/6/input.txt"
-                )
+                read_file("C:/Users/Phili/Documents/Projects/AoC_2020/6/input.txt")
             )
         )
     )
-
-    Test = read_file("C:/Users/Phili/Documents/Projects/Advent of Code/6/input.txt")
-    print(sum_all_yes(Test))
+    print(
+        sum_all_yes(read_file("C:/Users/Phili/Documents/Projects/AoC_2020/6/input.txt"))
+    )
 
 
 if __name__ == "__main__":

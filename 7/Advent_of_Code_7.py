@@ -1,5 +1,4 @@
 import re
-from typing import Literal
 
 
 def read_file(txt):
@@ -27,6 +26,20 @@ def find_rules(input):
     return list_of_rules
 
 
+def find_rulesdict(input):
+    list_of_rules = {}
+    find_container = re.compile("([^\/]*) bags contain")
+    find_content = re.compile("(\d) (\D*) bag")
+    for i in range(len(input)):
+        for match in re.finditer(find_container, input[i]):
+            container = match.groups()[0]
+        content = {}
+        for match in re.finditer(find_content, input[i]):
+            content[match.groups()[1]] = match.groups()[0]
+        list_of_rules[container] = content
+    return list_of_rules
+
+
 def bags_carry(rules, bags):
     bags_which_contains_bags = []
     for i in range(len(bags)):
@@ -44,6 +57,16 @@ def delete_duplicates(input):
     return without_duplicates
 
 
+def amount_in_bag(rules, bagcolor):
+    amount = 0
+    if len(rules[bagcolor]) != 0:
+        for key in rules[bagcolor]:
+            amount = amount + int(rules[bagcolor][key]) * (
+                1 + amount_in_bag(rules, key)
+            )
+    return amount
+
+
 def main():
     rules = find_rules(
         read_file("C:/Users/Phili/Documents/Projects/AoC_2020/7/input.txt")
@@ -57,13 +80,10 @@ def main():
         i = after - before
     print(len(bags))
 
-    test = find_rules(
+    rules2 = find_rulesdict(
         read_file("C:/Users/Phili/Documents/Projects/AoC_2020/7/input.txt")
     )
-    print(test[1])
-
-
-# )
+    print(amount_in_bag(rules2, "shiny gold"))
 
 
 if __name__ == "__main__":

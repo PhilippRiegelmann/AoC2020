@@ -97,7 +97,7 @@ def information_valid(input):
 
 def main():
     allreqfields = number_valid(
-        sort(read_file("C:/Users/Phili/Documents/Projects/Advent of Code/4/input.txt"))
+        sort(read_file("C:/Users/Phili/Documents/Projects/AoC_2020/4/input.txt"))
     )
     print(len(allreqfields))
     print(information_valid(allreqfields))

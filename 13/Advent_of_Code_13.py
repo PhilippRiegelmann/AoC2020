@@ -35,15 +35,64 @@ def min_minutes_to_wait(time, busses_on_service):
     return time_to_wait, bus_ID_to_take
 
 
+def find_maximum(input):
+    max = 0
+    offset = 0
+    for i in input:
+        if i[0] > max:
+            max = i[0]
+            offset = i[1]
+    return max, offset
+
+
 def main():
     input = read_file("C:/Users/Phili/Documents/Projects/AoC_2020/13/input.txt")
     earliest_timestamp = int(input[0])
     available_buses = in_service(input[1])
     time_to_wait, bus_to_take = min_minutes_to_wait(earliest_timestamp, available_buses)
     print(time_to_wait * bus_to_take)
-    print("")
-    print(in_service_and_offset(input[1]))
 
+    print("")
+    list_in_service = in_service_and_offset(input[1])
+    max, offset = find_maximum(list_in_service)
+    num_buses_in_service = len(list_in_service)
+    time = (104755328711505 // max) * max - offset
+    x = False
+    while x == False:
+        for i in list_in_service:
+            while ((time + i[1]) % i[0]) != 0:
+                time += max
+        differences = 0
+        for i in list_in_service:
+            if ((time + i[1]) % i[0]) == 0:
+                differences += 1
+            else:
+                break
+        print(time)
+        if differences == num_buses_in_service:
+            x = True
+            print(time)
+
+
+"""    list_in_service = in_service_and_offset(input[1])
+    max, offset = find_maximum(list_in_service)
+    time = ((100019948849147 // max) * max - offset)
+    x = False
+    while x == False:
+        differences = []
+        for i in list_in_service:
+            if ((time + i[1]) % i[0]) == 0:
+                differences.append(0)
+            else:
+                time += max
+                while time % list_in_service[0][0] != 0:
+                    time += max
+                print(time)
+                break
+            if len(differences) == len(list_in_service):
+                x = True
+                print(time)
+ """
 
 if __name__ == "__main__":
     main()
